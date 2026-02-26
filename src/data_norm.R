@@ -1,5 +1,5 @@
 # Cargar y eliminar comentarios del archivo de entrada BLASTP (format 7)
-blast_data <- read.table("results/blastp_prot_resuts.tab", comment.char = "#", stringsAsFactors = FALSE)
+blast_data <- read.table("results/phosphatases_blastp_resuts_cut.tab", comment.char = "#", stringsAsFactors = FALSE)
 
 # Para una mejor visualización asignaremos nombres a las columnas a nuestro blast_data
 colnames(blast_data) <- c(

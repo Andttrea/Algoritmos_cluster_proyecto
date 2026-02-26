@@ -124,7 +124,7 @@ save_all_plots <- function(output_dir = "results/plots", save = FALSE) {
     # 1. Plots de clustering jerárquico
     for (cluster in list(cluster_sin, cluster_com, cluster_ave, cluster_war)) {
       method_name <- c("single", "complete", "average", "ward")[match(cluster, list(cluster_sin, cluster_com, cluster_ave, cluster_war))]
-      png(file.path(output_dir, paste0(sprintf("%02d", plot_counter), "_hclust_", method_name, ".png")))
+      png(file.path(output_dir, paste0(sprintf("%02d", plot_counter), "_hclust_", method_name, ".png")), width = 11.25, height = 7.5, units = "in", res = 600)
       plot(cluster, hang = -1)
       dev.off()
       plot_counter <- plot_counter + 1
@@ -139,7 +139,7 @@ save_all_plots <- function(output_dir = "results/plots", save = FALSE) {
       i <- combos[1, k]
       j <- combos[2, k]
       
-      png(file.path(output_dir, paste0(sprintf("%02d", plot_counter), "_tanglegram_", nombres[i], "_vs_", nombres[j], ".png")))
+      png(file.path(output_dir, paste0(sprintf("%02d", plot_counter), "_tanglegram_", nombres[i], "_vs_", nombres[j], ".png")), , width = 11.25, height = 7.5, units = "in", res = 600)
       tanglegram(dends[[i]], dends[[j]], 
                 main = paste0(nombres[i], " vs ", nombres[j],
                             " | Entanglement: ",
@@ -149,7 +149,7 @@ save_all_plots <- function(output_dir = "results/plots", save = FALSE) {
     }
     
     # 3. Corrplot (Baker correlations)
-    png(file.path(output_dir, paste0(sprintf("%02d", plot_counter), "_baker_correlations.png")))
+    png(file.path(output_dir, paste0(sprintf("%02d", plot_counter), "_baker_correlations.png")), width = 11.25, height = 7.5, units = "in", res = 600)
     corrplot(baker,
             method = "circle",
             type = "lower",
@@ -172,7 +172,7 @@ save_all_plots <- function(output_dir = "results/plots", save = FALSE) {
         plot <- fviz_nbclust(matrix_dis, FUN = hcut, hc_method = method, method = m, k.max = 14) +
           labs(subtitle = paste(method, "-", m))
         
-        png(file.path(output_dir, paste0(sprintf("%02d", plot_counter), "_nbclust_", method, "_", m, ".png")))
+        png(file.path(output_dir, paste0(sprintf("%02d", plot_counter), "_nbclust_", method, "_", m, ".png")), width = 11.25, height = 7.5, units = "in", res = 600)
         print(plot)
         dev.off()
         plot_counter <- plot_counter + 1

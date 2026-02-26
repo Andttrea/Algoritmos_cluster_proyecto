@@ -50,7 +50,8 @@ A continuación, se presentan los dendrogramas generados por los cuatro métodos
 1.  **¿Cuál es el árbol más informativo?**
     *   **Average Linkage (Plot 03) y Ward.D2 (Plot 04)** suelen ser los más informativos.
     *   La razón es que el método **Average** (UPGMA) es estándar en filogenética molecular porque asume implícitamente un "reloj molecular" y promedia las distancias (aunque para este campo hay mejores métodos como HYK que aplican otro enfoque pero retornan mejores resultados), reflejando mejor las relaciones entre grupos. **Ward** es excelente para definir grupos discretos (familias/subfamilias claras) al minimizar la varianza interna, facilitando la identificación de clases funcionales distintas.
-    *   En este caso árbol `Ward` es muy útil para *clasificación*, muestra grupos claros y más agrupados que coinciden con familias conocidas.
+    
+Para estos dendrogramas el método de **Ward.D2** muestra agrupaciones más grandes
 
 2.  **¿Cuál es el árbol menos informativo?**
     *   **Single Linkage (Plot 01)**.
