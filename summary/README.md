@@ -12,7 +12,7 @@ Es fundamental comprender que este análisis es de naturaleza **exploratoria y f
 El pilar del clustering es la transformación de datos biológicos en una matriz de distancias matemáticas.
 *   **Origen de los datos:** Se utilizaron *bitscores* de un análisis BLASTP "all-vs-all". El *bitscore* es una medida de similitud de alineamiento que permite comparaciones consistentes entre pares.
 *   **Normalización y Transformación:** Para obtener una escala comparable, los puntajes se normalizaron y se transformaron en una matriz de disimilitud ($D$) mediante la fórmula $D = 1 - S$.
-*   **Interpretación Estadística:** Un valor de $0$ indica identidad o similitud máxima en el alineamiento, mientras que un valor cercano a $1$ indica una alta disimilitud numérica. Esta métrica mide qué tan "lejos" está una secuencia de otra en el espacio de los datos, sin inferir necesariamente una distancia temporal o evolutiva.
+*   **Interpretación Estadística:** Un valor de $0$ indica identidad o similitud máxima en el alineamiento, mientras que un valor cercano a $1$ indica una alta disimilitud numérica. Esta métrica mide qué tan "lejos" está una secuencia de otra en el espacio de los datos.
 
 ### 2. Impacto del Método de Agrupamiento (Linkage)
 Se aplicaron cuatro algoritmos de aglomeración (`single`, `complete`, `average`, `ward.D2`). Cada uno impone una lógica distinta sobre cómo se fusionan los grupos, lo que altera la topología del dendrograma resultante:
@@ -22,7 +22,7 @@ Se aplicaron cuatro algoritmos de aglomeración (`single`, `complete`, `average`
 *   **Complete Linkage (Vecino más lejano):** Considera la distancia máxima entre miembros de los clústeres.
     *   *Tendencia:* Genera clústeres compactos y es útil para encontrar grupos bien delimitados, aunque es sensible a valores atípicos (*outliers*).
 *   **Average Linkage (UPGMA):** Calcula el promedio de todas las distancias entre pares de los dos clústeres.
-    *   *Nota técnica:* Aunque es común en estudios biológicos por su equilibrio estadístico, en este contexto se utiliza estrictamente para representar la distancia promedio de los datos, sin asumir la existencia de un "reloj molecular".
+    *   *Nota técnica:* Aunque es común en estudios biológicos por su equilibrio estadístico, en este contexto se utiliza estrictamente para representar la distancia promedio de los datos.
 *   **Ward's Method (Ward.D2):** Minimiza la varianza total (suma de cuadrados) dentro de los clústeres.
     *   *Tendencia:* Es el método más robusto para identificar clústeres esféricos y compactos, facilitando la visualización de grupos de proteínas con perfiles de similitud altamente consistentes.
 
@@ -33,7 +33,7 @@ Se aplicaron cuatro algoritmos de aglomeración (`single`, `complete`, `average`
 
 # B.- Análisis Visual y Discusión de los Dendrogramas
 
-A continuación, se presentan los dendrogramas generados por los cuatro métodos de clustering jerárquico. La inspección visual permite evaluar la capacidad de cada algoritmo para agrupar las secuencias basándose en su matriz de distancias, sin que esto implique necesariamente una reconstrucción de su historia evolutiva.
+A continuación, se presentan los dendrogramas generados por los cuatro métodos de clustering jerárquico. La inspección visual permite evaluar la capacidad de cada algoritmo para agrupar las secuencias basándose en su matriz de distancias.
 
 #### 4.1 Visualización de los Árboles
 
@@ -48,7 +48,7 @@ A continuación, se presentan los dendrogramas generados por los cuatro métodos
 
 1. **¿Cuál es el árbol más informativo para identificar grupos de similitud?**
     * **Ward.D2 (Plot 04) y Average Linkage (Plot 03)** resultan ser los más útiles para la interpretación visual de grupos.
-    * **Razón:** El método de **Ward** es altamente eficiente para definir grupos discretos al minimizar la varianza dentro de cada clúster, lo que facilita la identificación de conjuntos de proteínas con características similares. Por su parte, **Average Linkage (UPGMA)** ofrece un compromiso estadístico al considerar la distancia promedio entre todos los miembros de los grupos, lo que suele generar una estructura jerárquica más equilibrada. Es importante notar que, aunque estos métodos agrupen proteínas de especies cercanas, **no deben interpretarse como inferencias filogenéticas**, ya que el clustering se basa en similitud fenética (distancia actual) y no en modelos de sustitución evolutiva o búsqueda de ancestros comunes.
+    * **Razón:** El método de **Ward** es altamente eficiente para definir grupos discretos al minimizar la varianza dentro de cada clúster, lo que facilita la identificación de conjuntos de proteínas con características similares. Por su parte, **Average Linkage (UPGMA)** ofrece un compromiso estadístico al considerar la distancia promedio entre todos los miembros de los grupos, lo que suele generar una estructura jerárquica más equilibrada.
 ---
 2. **¿Cuál es el árbol menos informativo para la clasificación?**
     * **Single Linkage (Plot 01)**.
@@ -74,8 +74,8 @@ A continuación, se presentan los dendrogramas generados por los cuatro métodos
     *   **Complete Linkage** también presenta un coeficiente alto debido a que utiliza la distancia máxima (el diámetro del clúster) para las fusiones, lo que evita el encadenamiento y favorece la formación de grupos bien definidos y compactos.
 
 *   
-    Es fundamental notar que un AC alto **no significa necesariamente que el árbol sea "biológicamente correcto"** o que represente una verdad evolutiva. Un coeficiente elevado simplemente indica que el método fue muy eficiente en encontrar una estructura bajo sus propios criterios matemáticos (en este caso, la compacidad). 
-    Mientras que **Single Linkage** suele tener el AC más bajo debido al efecto de encadenamiento (que crea una estructura "laxa"), los valores superiores a 0.90 en Ward y Complete sugieren que la matriz de disimilitud de estas proteínas posee grupos de similitud intrínsecos muy fuertes que ambos algoritmos logran capturar con éxito.
+    Es fundamental notar que un coeficiente elevado simplemente indica que el método fue muy eficiente en encontrar una estructura bajo sus propios criterios matemáticos (en este caso, la compacidad). 
+    Mientras que **Single Linkage** suele tener el AC más bajo debido al efecto de encadenamiento, los valores superiores a 0.90 en Ward y Complete sugieren que la matriz de disimilitud de estas proteínas posee grupos de similitud intrínsecos muy fuertes que ambos algoritmos logran capturar con éxito.
 
 ---
 
@@ -84,10 +84,11 @@ A continuación, se presentan los dendrogramas generados por los cuatro métodos
 Con el conocimiento adquirido durante el curso se nos permitió explorar la estructura de similitud de un conjunto de secuencias proteicas mediante técnicas de clustering jerárquico, transformando datos de alineamiento primario en representaciones gráficas de disimilitud. Tras evaluar los resultados obtenidos, se presentan las siguientes conclusiones:
 
 #### 5.1. Naturaleza Fenética del Análisis
-Es imperativo reiterar que los dendrogramas generados en este proyecto son **fenogramas** y no árboles filogenéticos. Mientras que una filogenia busca reconstruir la historia evolutiva y los ancestros comunes mediante modelos probabilísticos de sustitución, el clustering jerárquico se limita a agrupar objetos basándose en su **similitud numérica actual**. Por lo tanto, las agrupaciones observadas deben interpretarse como "clases de similitud de secuencia" y no como una crónica definitiva de la evolución de estas proteínas.
+Es imperativo reiterar que los dendrogramas generados en este proyecto son **fenogramas**, el clustering jerárquico se limita a agrupar objetos basándose en su **similitud numérica actual**. Por lo tanto, las agrupaciones observadas deben interpretarse como "clases de similitud de secuencia" y no como una crónica definitiva de la evolución de estas proteínas.
 
 #### 5.2. Robustez y Estructura de los Datos
 La consistencia observada en los métodos de **Ward.D2**, **Average** y **Complete Linkage** para recuperar grupos taxonómicos conocidos sugiere que la señal biológica de las secuencias es lo suficientemente fuerte como para trascender las diferencias algorítmicas. El hecho de que el método de **Ward.D2** haya obtenido el **Agglomerative Coefficient** más alto (0.9341) confirma la existencia de una estructura de grupos altamente cohesiva y bien definida en la matriz de disimilitud original, lo que facilita la identificación de familias proteicas discretas.
+Sin embargo todos los métodos tuvieron un alto grado de AC debido a su origen, ya que los datos se obtuvieron de un proyecto en curso en el cual el grupo de proteínas seleccionadas pertenecen a ortogrupos identidicados por una herramienta bioinformática, y que estos hayan mostrado esas formas en los dendogramas refuerza que la estructura general de todas las proteínas es altamente cohesiva.
 
 #### 5.3. Sensibilidad Metodológica
 El análisis comparativo demostró que la elección del método de unión (*linkage*) altera drásticamente la topología del árbol:
