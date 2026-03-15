@@ -39,10 +39,10 @@ A continuación, se presentan los dendrogramas generados por los cuatro métodos
 
 | Método | Dendrograma | Características Visuales |
 | :--- | :---: | :---: |
-| **Single Linkage** | ![Single](../results/plots/01_hclust_NA.png) | Marcado efecto de "encadenamiento" (chaining). |
-| **Complete Linkage** | ![Complete](../results/plots/02_hclust_NA.png) | Estructura de clústeres más compactos y definidos. |
-| **Average Linkage** | ![Average](../results/plots/03_hclust_NA.png) | Estructura balanceada basada en distancias promedio. |
-| **Ward's Method** | ![Ward](../results/plots/04_hclust_NA.png) | Clústeres con jerarquía clara y mínima varianza interna. |
+| **Single Linkage** | ![Single](https://raw.githubusercontent.com/Andttrea/Algoritmos_cluster_proyecto/refs/heads/main/results/plots/01_hclust_NA.png) | Marcado efecto de "encadenamiento" (chaining). |
+| **Complete Linkage** | ![Complete](https://raw.githubusercontent.com/Andttrea/Algoritmos_cluster_proyecto/refs/heads/main/results/plots/02_hclust_NA.png) | Estructura de clústeres más compactos y definidos. |
+| **Average Linkage** | ![Average](https://raw.githubusercontent.com/Andttrea/Algoritmos_cluster_proyecto/refs/heads/main/results/plots/03_hclust_NA.png) | Estructura balanceada basada en distancias promedio. |
+| **Ward's Method** | ![Ward](https://raw.githubusercontent.com/Andttrea/Algoritmos_cluster_proyecto/refs/heads/main/results/plots/04_hclust_NA.png) | Clústeres con jerarquía clara y mínima varianza interna. |
 
 #### 4.2 Discusión de Resultados
 
